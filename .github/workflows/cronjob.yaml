@@ -1,0 +1,42 @@
+name: cronjob
+  
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
+
+permissions:
+  contents: write
+  pull-requests: read
+
+  
+jobs:  
+  build:  
+    runs-on: ubuntu-latest  
+  
+    steps:  
+    - name: Checkout code  
+      uses: actions/checkout@v3
+    - name: Install Go
+      uses: actions/setup-go@v4
+      with:  
+        go-version: '1.20.3'
+    - name: Setup latest Terraform  
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_wrapper: false
+    - name: Remove generated directory  
+      run: rm -rf generated
+    - name: Run go mod tidy
+      run: go mod tidy
+    - name: refresh and test
+      run: | 
+        export VERSION=$(go run cmd/main.go -refresh)
+        export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+        go mod tidy
+        go test github.com/${{ github.repository }}/v4/generated/...
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+    - name: git commit
+      run: |
+        export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+        go run cmd/main.go -commit=$VERSION
