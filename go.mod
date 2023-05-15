@@ -12,7 +12,7 @@ require (
 	github.com/hashicorp/terraform-json v0.16.0
 	github.com/iancoleman/strcase v0.2.0
 	github.com/stretchr/testify v1.8.2
-	golang.org/x/oauth2 v0.7.0
+	golang.org/x/oauth2 v0.8.0
 )
 
 require (
@@ -39,8 +39,8 @@ require (
 	github.com/zclconf/go-cty v1.13.0 // indirect
 	golang.org/x/crypto v0.7.0 // indirect
 	golang.org/x/mod v0.9.0 // indirect
-	golang.org/x/net v0.9.0 // indirect
-	golang.org/x/sys v0.7.0 // indirect
+	golang.org/x/net v0.10.0 // indirect
+	golang.org/x/sys v0.8.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
