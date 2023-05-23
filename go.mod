@@ -11,7 +11,7 @@ require (
 	github.com/hashicorp/terraform-exec v0.18.1
 	github.com/hashicorp/terraform-json v0.16.0
 	github.com/iancoleman/strcase v0.2.0
-	github.com/stretchr/testify v1.8.2
+	github.com/stretchr/testify v1.8.3
 	golang.org/x/oauth2 v0.8.0
 )
 
